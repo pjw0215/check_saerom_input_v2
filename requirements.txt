@@ -1,0 +1,8 @@
+pandas
+pillow
+progressbar2
+pyautogui
+pykrx
+selenium
+webdriver_manager
+clipboard

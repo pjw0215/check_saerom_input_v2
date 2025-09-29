@@ -1,0 +1,7 @@
+__pycache__/
+*.ipynb
+*백업*
+*(*)*
+test.py
+.env
+*.egg-info/
