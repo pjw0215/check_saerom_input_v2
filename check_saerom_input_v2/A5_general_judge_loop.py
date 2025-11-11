@@ -2,12 +2,16 @@ import pyautogui as pya
 from JW_modules.activate_window import activate_window
 from B4_general_judge_once import general_judge_once
 from B3_special_select_next_module import special_select_next, NoNextPersonError
+from B5_align_seperators import align_seperators_of_list
 import time
 
 JUDGE_DATE = '20251031'
 DOCTOR = '박정우'
 
 def general_judge_loop(judge_date, doctor, overwrite=False, use_pya_alert=False):
+    screenshot = pya.screenshot()
+    align_seperators_of_list(screenshot=screenshot)  # 대상자 리스트 정렬
+
     while True:
         screenshot = pya.screenshot()
         general_judge_once(judge_date, doctor, screenshot=screenshot, overwrite=overwrite)

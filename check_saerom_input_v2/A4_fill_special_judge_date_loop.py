@@ -2,11 +2,16 @@ import pyautogui as pya
 from JW_modules.activate_window import activate_window
 from B2_fill_special_judge_date_once import fill_special_judge_date_once
 from B3_special_select_next_module import special_select_next, NoNextPersonError
+from B5_align_seperators import align_seperators_of_list, align_seperators_of_special
 import time
 
 JUDGE_DATE = '20251031'
 
 def fill_special_judge_date_loop(judge_date, overwrite=False, use_pya_alert=True):
+    screenshot = pya.screenshot()
+    align_seperators_of_special(first_only=False, screenshot=None)
+    align_seperators_of_list(screenshot=screenshot)  # 대상자 리스트 정렬
+    
     while True:
         screenshot = pya.screenshot()
         fill_special_judge_date_once(judge_date, screenshot=screenshot, overwrite=overwrite)

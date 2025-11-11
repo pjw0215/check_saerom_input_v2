@@ -6,6 +6,7 @@ from check_saerom_input_v2.saerom_check_module.search_night_cardiovascular_loc i
 from check_saerom_input_v2.B3_special_select_next_module import get_individual_screenshot, wait_and_check_through_individual_screenshot
 from JW_modules.activate_window import activate_window
 from JW_modules.JW_pya import check_rgb_at_location, input_text
+from B5_align_seperators import align_seperators_of_list, align_seperators_of_special
 
 EXCEL_PATH = r"C:\Users\MyCom\Documents\통합 문서1.xlsx"
 
@@ -52,6 +53,10 @@ def check_closing(screenshot, unlock=True):
 
 
 def night_judge(excel_path, use_pya_alert=True):
+    screenshot = pya.screenshot()
+    align_seperators_of_special(first_only=False, screenshot=None)
+    align_seperators_of_list(screenshot=screenshot)  # 대상자 리스트 정렬
+
     df_raw = read_excel_file(excel_path)
 
     df = df_raw[df_raw['특수검진물질'].str.contains('야간')].copy()  # 야간대상 데이터만 추려진 df 생성

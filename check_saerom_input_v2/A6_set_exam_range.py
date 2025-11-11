@@ -1,6 +1,7 @@
 import re
 import pyautogui as pya
 from datetime import datetime
+from B5_align_seperators import align_seperators_of_list, align_seperators_of_special
 from JW_modules.JW_pya import input_text, check_rgb_at_location, locate_image
 from JW_modules.activate_window import activate_window, WindowActivationError
 
@@ -89,7 +90,10 @@ def set_exam_range(exam_range:str, choice:str):
     
     if title == '특수결과입력':
         screenshot = pya.screenshot()
-
+        align_seperators_of_special(first_only=True, screenshot=screenshot)
+        align_seperators_of_list(screenshot=screenshot)  # 대상자 리스트 정렬
+        
+        screenshot = pya.screenshot()
         # 전체 검색 해제
         if check_rgb_at_location(SPECIAL_WHOLE_DATE_SELECT_LOC, rgb=SELECTED_RGB, threshold=15, screenshot=screenshot):
             print('전체선택을 해제합니다.')
@@ -113,7 +117,7 @@ def set_exam_range(exam_range:str, choice:str):
 
     elif title == '데이터 엑셀다운':
         screenshot = pya.screenshot()
-        
+
         option_select_error = False
         try:
             locate_image('./image/down_option_select.png', screenshot=screenshot)
@@ -142,5 +146,5 @@ def set_exam_range(exam_range:str, choice:str):
 
 
 if __name__ == '__main__':
-    exam_range = '01/25 7001-7025'
-    set_exam_range(exam_range)
+    exam_range = '11/4 7001-7118'
+    set_exam_range(exam_range, choice='특수')
