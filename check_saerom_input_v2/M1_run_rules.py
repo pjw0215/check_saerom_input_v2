@@ -98,8 +98,7 @@ def run_rules(df: pd.DataFrame, rules: dict):
 
 
 if __name__ == '__main__':
-
-    from saerom_check_module.check_rules import CHECK_RULES
+    from M0_check_list import CHECK_RULES
     EXCEL_PATH = r"C:\Users\MyCom\Documents\통합 문서1.xlsx"
     df_raw = pd.read_excel(EXCEL_PATH, dtype={'챠트번호': str})
 
