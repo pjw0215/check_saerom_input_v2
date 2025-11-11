@@ -1,7 +1,11 @@
 __pycache__/
+dist/
+build/
+*.egg-info/
 *.ipynb
+*.zip
+*.spec
 *백업*
 *(*)*
 test.py
 .env
-*.egg-info/
