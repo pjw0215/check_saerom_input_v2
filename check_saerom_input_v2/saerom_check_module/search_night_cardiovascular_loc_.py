@@ -42,14 +42,14 @@ def search_night_cardiovascular_loc(screenshot):
             loc = _search_cardiovascular_in_night(night_loc_list)
             return loc
 
-        except:  # 야간을 찾지못해 night_loc_list를 정의하지 못하거나 / 야간을 찾았으나 심혈관계를 찾지못해 에러가 나는 경우
+        except Exception as err:  # 야간을 찾지못해 night_loc_list를 정의하지 못하거나 / 야간을 찾았으나 심혈관계를 찾지못해 에러가 나는 경우
             if _check_is_more_opinion_page(screenshot):
                 # print('페이지가 더 있어 내립니다.\n')
                 pya.click(1670, 542)  # 페이지를 아래로 내리기  # 적당만큼만 내려지는지 확인 필요
                 screenshot = pya.screenshot()
                 continue
             else:
-                raise Exception('페이지가 더 없어 종료합니다.')
+                raise Exception(f'페이지가 더 없어 종료합니다. : {err}')
             
 
 if __name__ == '__main__':

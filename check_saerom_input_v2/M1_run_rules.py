@@ -70,6 +70,11 @@ def get_abnormal_list_by_date(
 
 
 def run_rules(df: pd.DataFrame, rules: dict):
+    df = df.apply(lambda col: col.str.replace('_x000D_', '', regex=False)
+                               .str.replace('\r', '', regex=False)
+                               .str.replace('\n', ' ', regex=False)
+                               if col.dtype == "object" else col)
+
     abnormal_list_concat = []
     missing_keys = []  # 대상 컬럼 자체가 없는 경우
     empty_keys = []    # 컬럼은 있으나 이상소견이 하나도 없는 경우

@@ -1,4 +1,5 @@
 import os, re
+from datetime import date
 from tkinter import *
 from tkinter import filedialog
 from tkinter import ttk
@@ -45,7 +46,7 @@ class SooSaeromAddon():
 
 
         # 파일 선택 프레임 (self.top)
-        self.top = LabelFrame(self.root, text='엑셀파일 경로 (2, 3번 기능에서 사용)')
+        self.top = LabelFrame(self.root, text='엑셀파일 경로')
         self.top.pack(fill=BOTH, padx=20, pady=10)
         self.top.grid_columnconfigure(0, weight=1)
         self.top.grid_columnconfigure(1, weight=0)
@@ -85,6 +86,7 @@ class SooSaeromAddon():
             .grid(row=mid_row, column=6, sticky=W, padx=10, pady=PADY)
         mid_row += 1
 
+
         Label(self.mid, text=f'{mid_row}. 특수문진 체크')\
             .grid(row=mid_row, column=0, sticky=W, padx=10, pady=PADY)
         Button(self.mid, text="시작", width=6, command=self.start_check_special_question)\
@@ -112,7 +114,7 @@ class SooSaeromAddon():
             .grid(row=mid_row, column=1, sticky=W, padx=10, pady=PADY)
         Label(self.mid, text='⚬ 날짜 (YYYYMMDD)')\
             .grid(row=mid_row, column=2, sticky=W, padx=10, pady=PADY)
-        self.special_judge_date_var = StringVar()
+        self.special_judge_date_var = StringVar(value=date.today().strftime('%Y%m%d'))
         Entry(self.mid, width=10, textvariable=self.special_judge_date_var)\
             .grid(row=mid_row, column=3, sticky=W, padx=10, pady=PADY)
         self.special_overwrite_var = BooleanVar(value=False)
