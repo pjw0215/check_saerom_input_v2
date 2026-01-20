@@ -2,6 +2,7 @@ import pandas as pd
 from M0_check_list import CHECK_RULES
 from M1_run_rules import run_rules
 from M2_PFT_check import PFT_check
+from M3_R_issue_check import R_issue_check
 
 def check_list(excel_path):
     pd.set_option('display.max_rows', None)
@@ -17,6 +18,7 @@ def check_list(excel_path):
     print('\n'+'\n\n'.join(abnormal_list)+'\n')
     
     PFT_check(df_raw)
+    R_issue_check(df_raw)
 
 
 if __name__ == '__main__':
