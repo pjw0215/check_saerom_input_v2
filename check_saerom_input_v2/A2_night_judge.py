@@ -61,7 +61,10 @@ def night_judge(excel_path, use_pya_alert=True):
 
     df = df_raw[df_raw['특수검진물질'].str.contains('야간')].copy()  # 야간대상 데이터만 추려진 df 생성
     if len(df.index) == 0:
-        pya.alert(text='야간작업 대상이 없습니다.', title='안내', button='확인')
+        if use_pya_alert:
+            pya.alert(text='야간작업 대상이 없습니다.', title='안내', button='확인')
+        else:
+            print('야간작업 대상이 없습니다.') # A0.py의 로그창(LogPane)에 출력되도록 print 사용
         return
     
     df_night_judge = make_night_judge(df)  # df에 대응되는 인덱스를 가진 df_night_judge 생성
